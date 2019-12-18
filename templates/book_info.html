@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	Search results
+{% endblock %}
+
+{% block body %}
+	<h1>Book info</h1>
+	
+	<h4><b>ISBN:</b> {{ book.isbn }}</h4>
+	<h4><b>Title:</b> {{ book.title }}</h4>
+	<h4><b>Author:</b> {{ book.author }}</h4>
+	<h4><b>Year:</b> {{ book.year }}</h4>	
+	
+	<h2>Googreads info</h2>
+	<h4>Average rating: {{ res.average_rating }} out of {{ res.work_ratings_count}} ratings.</h4>
+	<h4>Number of reviews: {{ res.work_text_reviews_count }}.</h4>
+{% endblock %}

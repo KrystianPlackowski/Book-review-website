@@ -1,15 +1,26 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	Success!
+	Search results
 {% endblock %}
 
 {% block body %}
-	<h1>Succes!</h1>
+	<h1>Search results</h1>
+	
+	Found {{ results|length }} result(s).
+	{% if results|length > 30 %}
+		Below displaying first 30.	
+	{% endif %}
 
 	<ul>
+		{% if results|length > 30 %}
+			{% set results = results[:30] %}
+		{% endif %}
+		
 		{% for result in results %}
-			<li>{{ result }}</li>
+			<a href="{{ url_for('book_info', book_id=result[0]) }}">
+				<li><b>ISBN:</b> {{ result[1] }}, <b>Title:</b> {{ result[2] }}, <b>Author:</b> {{ result[3] }}, <b>Year:</b> {{ result[4] }}</li>
+			</a>
 		{% endfor %}
 	</ul>
 

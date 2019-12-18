@@ -30,7 +30,7 @@
 		{% endif %}
 		
 		{% for result in results %}
-			<a href="{{ url_for('book_info', book_id=result[0]) }}">
+			<a href="{{ url_for('book_info', book_isbn=result[1]) }}">
 				<li><b>ISBN:</b> {{ result[1] }}, <b>Title:</b> {{ result[2] }}, <b>Author:</b> {{ result[3] }}, <b>Year:</b> {{ result[4] }}</li>
 			</a>
 		{% endfor %}

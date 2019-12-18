@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template, request, json
+from flask import Flask, session, render_template, request, json, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -122,10 +122,10 @@ def results():
     return render_template("results.html", results=sorted(list(query_results)))
 
 
-@app.route('/search/results/<int:book_id>')
-def book_info(book_id):
-    book = db.execute("SELECT * FROM books WHERE ID = :book_id"
-            , {"book_id":book_id}).fetchone()
+@app.route('/search/results/<string:book_isbn>')
+def book_info(book_isbn):
+    book = db.execute("SELECT * FROM books WHERE isbn = :book_isbn"
+            , {"book_isbn":book_isbn}).fetchone()
 
     if book == None:
         return render_template("error.html", message="No such book.")
@@ -135,3 +135,26 @@ def book_info(book_id):
     
     return render_template("book_info.html", book=book
             , res=res.json()['books'][0], code=res.status_code)
+
+
+# Return json object response for a book
+@app.route('/api/<string:book_isbn>')
+def book_api(book_isbn):
+    book = db.execute("SELECT * FROM books WHERE isbn = :book_isbn"
+            , {"book_isbn":book_isbn}).fetchone()
+
+    if book == None:
+        return jsonify({"error":"Invalid ISBN"}), 422
+    
+    res = requests.get("https://www.goodreads.com/book/review_counts.json"
+            , params={"key": api_key, "isbns": book.isbn})
+    res = res.json()['books'][0]
+    
+    return jsonify({
+        "title": book.title,
+        "author": book.author,
+        "year": book.year,
+        "isbn": book.isbn,
+        "review_count": res['reviews_count'],
+        "average_score": res['average_rating']
+        }), 200

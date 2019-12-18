@@ -12,7 +12,18 @@
 	<h4><b>Author:</b> {{ book.author }}</h4>
 	<h4><b>Year:</b> {{ book.year }}</h4>	
 	
-	<h2>Googreads info</h2>
-	<h4>Average rating: {{ res.average_rating }} out of {{ res.work_ratings_count}} ratings.</h4>
-	<h4>Number of reviews: {{ res.work_text_reviews_count }}.</h4>
+	{% if code < 400 %}
+		<h2>Googreads info</h2>
+		<h4>Average rating: {{ res.average_rating }} out of {{ res.work_ratings_count}} ratings</h4>
+		<h4>Number of reviews: {{ res.work_text_reviews_count }}</h4>
+	{% endif %}
+
+	<form action="{{ url_for('search') }}" method="post">
+		<button class="btn btn-primary">Return to search page</button>
+	</form>
+
+	<form action="{{ url_for('logout') }}" method="post">
+		<button class="btn btn-primary">Logout</button>
+	</form>
+	
 {% endblock %}

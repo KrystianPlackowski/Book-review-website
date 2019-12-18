@@ -8,7 +8,6 @@
 	<h1>Search books</h1>
 
 	<form action="{{ url_for('results') }}" method="post">
-
 		<div class="form-group">
 			<input class="form-control" name="search query" placeholder="Search by Book Title, Author or ISBN">
 		</div>
@@ -16,7 +15,12 @@
 		<div class="form-group">
 			<button class="btn btn-primary">Search</button>
 		</div>
+	</form>
 
+	<form action="{{ url_for('logout') }}" method="post">
+		<div class="form-group">
+			<button class="btn btn-primary">Logout</button>
+		</div>
 	</form>
 	
 {% endblock %}

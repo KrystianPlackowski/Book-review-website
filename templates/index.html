@@ -1,31 +1,23 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	Flights
+	Welcome to Book Page!
 {% endblock %}
 
 {% block body %}
-	<h1>Book a Flight</h1>
+	<h2>Welcome to Book Page {{ login }}!</h2>
+	<h4>Click below button to perform a search.</h4>
 
-	<form action="{{ url_for('book') }}" method="post">
-
+	<form action="{{ url_for('search') }}" method="post">
 		<div class="form-group">
-			<select class="form-control" name="flight_id">
-				{% for flight in flights %}
-					<option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
-				{% endfor %}
-			</select>
+			<button class="btn btn-primary">Go to search page</button>
 		</div>
-	
-		<div class="form-group">
-			<input class="form-control" name="name" placeholder="Passenger Name">
-		</div>
-
-		<div class="form-group">
-			<button class="btn btn-primary">Book Flight</button>
-		</div>
-
 	</form>
 	
-	<a href="{{ url_for('flight') }}">Flights details</a>
+	<form action="{{ url_for('logout') }}" method="post">
+		<div class="form-group">
+			<button class="btn btn-primary">Logout</button>
+		</div>
+	</form>
+	
 {% endblock %}

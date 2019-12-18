@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	Success!
+{% endblock %}
+
+{% block body %}
+	<h1>Succes!</h1>
+
+	<ul>
+		{% for result in results %}
+			<li>{{ result }}</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

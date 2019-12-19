@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	{{ header }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ header }}</h1>
+
+	{{ message }}
+
+	<div>
+		<form action="{{ url_for('book_info', book_isbn=book_isbn) }}" method="post">
+			<button class="btn btn-primary">Return to book's page</button>
+		</form>
+	</div>
+
+{% endblock %}

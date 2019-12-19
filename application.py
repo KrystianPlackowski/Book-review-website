@@ -87,9 +87,9 @@ def register():
                 message="Invalid username or password! At least 4 characters needed for each.")
                     
     # If username already taken
-    cred = db.execute("SELECT * FROM users WHERE login = :login"
+    conn = db.execute("SELECT * FROM users WHERE login = :login"
             , {"login":login}).fetchone()
-    if cred != None:
+    if conn != None:
         return render_template("register.html"
                 , message="Username already taken!")
 
@@ -122,7 +122,7 @@ def results():
     return render_template("results.html", results=sorted(list(query_results)))
 
 
-@app.route('/search/results/<string:book_isbn>')
+@app.route('/search/results/<string:book_isbn>', methods=["GET", "POST"])
 def book_info(book_isbn):
     book = db.execute("SELECT * FROM books WHERE isbn = :book_isbn"
             , {"book_isbn":book_isbn}).fetchone()
@@ -130,11 +130,44 @@ def book_info(book_isbn):
     if book == None:
         return render_template("error.html", message="No such book.")
     
+    # Get info from Goodreviews about this book
     res = requests.get("https://www.goodreads.com/book/review_counts.json"
             , params={"key": api_key, "isbns": book.isbn})
     
+    # Select all users' reviews of this book
+    reviews = db.execute("SELECT * FROM reviews WHERE book_id = :book_id",
+            {"book_id": book.id}).fetchall()
+
     return render_template("book_info.html", book=book
-            , res=res.json()['books'][0], code=res.status_code)
+            , res=res.json()['books'][0], code=res.status_code
+            , reviews=reviews)
+
+
+@app.route('/add_review/<string:book_isbn>', methods=["POST"])
+def add_review(book_isbn):
+
+    rating = request.form.get("rating")
+    text = request.form.get("review")
+
+    # Find book.id having book.isbn
+    book_id = db.execute("SELECT id FROM books WHERE isbn = :isbn",
+            {"isbn":book_isbn}).fetchone().id
+    
+    # Check if user already submitted review for this book
+    conn = db.execute("SELECT * FROM reviews WHERE book_id = :book_id AND login = :login"
+            , {"book_id":book_id, "login":session["login"]}).fetchone()
+    if conn != None:
+        return render_template("review_feedback.html"
+                , header="Sorry!", message="You already submitted review for this book.", book_isbn=book_isbn)
+
+    # Insert new review
+    db.execute("INSERT INTO reviews (book_id, login, rating, text) "
+            + "VALUES (:book_id, :login, :rating, :text)",
+            {"book_id":book_id, "login":session["login"], "rating":rating, 
+                "text":text})
+    db.commit()
+    return render_template("review_feedback.html"
+            , header="Success!", message="You successfully submitted review!", book_isbn=book_isbn)
 
 
 # Return json object response for a book

@@ -21,9 +21,39 @@
 	<form action="{{ url_for('search') }}" method="post">
 		<button class="btn btn-primary">Return to search page</button>
 	</form>
-
 	<form action="{{ url_for('logout') }}" method="post">
 		<button class="btn btn-primary">Logout</button>
 	</form>
-	
+
+	<h2>Our user's reviews</h2>
+	{% if reviews|length == 0 %}
+		No reviews yet. Maybe add first one?
+	{% endif %}
+	<ul>
+		{% for review in reviews %}
+			<li> {{ review.login }} rates this book for {{ review.rating }}
+			<ul>
+				<li>{{ review.text }}</li>
+			</ul>
+		{% endfor %}
+	</ul>
+
+	<form action="{{ url_for('add_review', book_isbn=book.isbn) }}" method="post">
+		<div class="form-group">
+			Your rating:
+			<select class="form-control" style="width: 60px;" name="rating">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<textarea rows="10" cols="50" name="review">Your review...</textarea>
+		</div>
+
+        	<button class="btn btn-primary">Submit review</button>
+        </form>
+
 {% endblock %}

@@ -28,7 +28,6 @@ def check_del_table(table_name):
         print("Deleted already existing table \'{}\'".format(table_name))
 
 
-"""
 # Create a new table 'books'. Delete (if so) already existing one
 check_del_table('books')
 db.execute("CREATE TABLE books (id SERIAL PRIMARY KEY, isbn VARCHAR, title VARCHAR, author VARCHAR, year INTEGER)")
@@ -36,7 +35,7 @@ print("Created new table \'books\'")
 
 # Import values from 'books.csv' to SQL table 'books'
 read_csv("books.csv")
-"""
+
 
 # Create tables 'users' and 'reviews'
 check_del_table('users')

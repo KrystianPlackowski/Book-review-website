@@ -72,12 +72,12 @@ def logout():
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
-    # If got to this page without providing credentials in form
+    # If got to this page without providing credentials in form (method "GET")
     if request.method == "GET":
         return render_template("register.html"
                 , message="Enter desired username and password.")
     
-    # If after providing credentials in `register.html` form
+    # If after providing credentials in `register.html` form (method "POST")
     login = request.form.get("login")
     password = request.form.get("password")
 

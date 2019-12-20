@@ -1,6 +1,6 @@
 # Project 1
 
-Web Programming with Python and JavaScript
+This is solution for second problem set at `CS50 course` conducted at Harvard University. The course is accessible at edX platform.
 
 ## Description
 

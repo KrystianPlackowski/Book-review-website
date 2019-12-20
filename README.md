@@ -1,6 +1,6 @@
 # Project 1
 
-This is solution for second problem set at `CS50 course` conducted at Harvard University. The course is accessible at edX platform.
+This is solution for second problem set at `CS50 course` conducted at Harvard University. The course is accessible through edX platform.
 
 ## Description
 

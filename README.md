@@ -2,7 +2,7 @@
 
 This is solution for second problem set at `CS50 course` conducted at Harvard University. The course is accessible through edX platform.
 
-## Description
+# Description
 
 A backend project of a simple website providing ability to register and log in (with special cases handing exceptions) for users, performing search for books, viewing details page for a selected book and writing reviews. Additionally, provides API responses when entering a specified route.
 

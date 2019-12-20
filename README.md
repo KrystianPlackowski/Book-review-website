@@ -2,7 +2,7 @@
 
 Web Programming with Python and JavaScript
 
-## Requirements
+## The task was to fulfill following requirements, cited from CS50 edX page:
 
 - Registration: Users should be able to register for your website, providing (at minimum) a username and password.
 - Login: Users, once registered, should be able to log in to your website with their username and password.

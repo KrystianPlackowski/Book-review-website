@@ -4,7 +4,7 @@ This is solution for second problem from `CS50 course` conducted at Harvard Univ
 
 ## Description
 
-A backend project of a simple website providing ability to register and log in (with special cases handling exceptions) for users, performing search for books, viewing details page for a selected book and writing reviews. Additionally, provides API responses when entering a specified route. The preview is available in `screencast.mp4`.
+A backend project of a simple website providing ability to register and log in (with special cases handling exceptions) for users, performing search for books, viewing details page for a selected book and writing reviews. Additionally, provides API responses when entering a specified route. The preview is available as `screencast.mp4`.
 
 ## Setting
 
@@ -12,4 +12,4 @@ The details page uses `Goodreads Review Data API`, so a key obtained at https://
 
 ## Running
 
-First run file `import.py` once. That will initiate 3 SQL tables and fill one of them with values from `books.csv` file. If database is stored online, it can take few minutes to complete. Whenever want to run application type `flask run` in terminal window. 
+First run file `import.py` once. That will initiate 3 SQL tables and fill one of them with values from `books.csv` file. If database is stored online, it can take few minutes to complete. Then whenever want to run application type `flask run` in terminal window. 

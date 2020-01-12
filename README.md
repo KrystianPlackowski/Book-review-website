@@ -1,10 +1,10 @@
-# Project 1
+# Book-review-website
 
-This is solution for second problem from `CS50 course` conducted at Harvard University. The course is accessible through edX platform: https://www.edx.org/
+This is a solution for the second problem from `CS50 course` conducted at Harvard University. The course is accessible through edX platform: https://www.edx.org/
 
 ## Description
 
-A backend project of a simple website providing ability to register and log in (with special cases handling exceptions) for users, performing search for books, viewing details page for a selected book and writing reviews. Additionally, provides API responses when entering a specified route. The preview is available as `screencast.mp4` or https://www.youtube.com/watch?v=IYnApJ4M8sM
+A backend project of a simple website with ability to login/register (with special cases handling exceptions), search for books and writing reviews. Additionally, provides API responses when entering a specified route. The preview showing all functionalities is available as `screencast.mp4` or via link https://www.youtube.com/watch?v=IYnApJ4M8sM
 
 ## Setting
 
